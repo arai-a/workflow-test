@@ -9,5 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Command
-      run: pwd
+    - name: Setup Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: "3.7"
+    - name: Download bootstrap.py
+      run: curl -O https://raw.githubusercontent.com/arai-a/workflow-test/master/bootstrap.py
+    - name: Run bootstrap.py
+      run: python3 bootstrap.py
