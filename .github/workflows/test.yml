@@ -3,6 +3,9 @@ name: Test
 on:
   issue_comment:
     types: [created, edited]
+  push:
+    branches:
+      - master
 
 jobs:
   test:
@@ -13,7 +16,14 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: "3.7"
-    - name: Download bootstrap.py
-      run: curl -O https://raw.githubusercontent.com/arai-a/workflow-test/master/bootstrap.py
-    - name: Run bootstrap.py
-      run: python3 bootstrap.py
+    - name: test env
+      run: |
+        curl \
+        --url https://api.github.com/repos/arai-a/ecma262-compare/branches/gh-pages \
+        --header 'content-type: application/json' | \
+        python -c 'import sys; import json; print("##[set-output name=sha;]{}".format(json.loads(sys.stdin.read())["commit"]["sha"]))'
+      id: foo
+    - name: echo
+      run: |
+        echo "sha is"
+        echo ${{steps.foo.outputs.sha}}
