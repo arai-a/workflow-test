@@ -13,14 +13,7 @@ jobs:
     - name: test comment
       run: |
         curl --request POST \
-        --url https://api.github.com/repos/${{ github.repository }}/check-runs \
+        --url https://api.github.com/repos/arai-a/workflow-test/statuses/05c883b196552833b965c4f4feab8005ca45c3bf \
         --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-        --header 'accept: application/vnd.github.antiope-preview+json' \
         --header 'content-type: application/json' \
-        --data '{ "name": "ecma262-compare", "head_sha": "8dac63919644fa8217ab2423f1a7cb87c52182ff", "details_url": "https://arai-a.github.io/ecma262-compare/?details", "external_id": "1", "status": "completed", "started_at": "2020-03-03T00:00:00Z", "conclusion": "success", "completed_at": "2020-03-03T00:00:00Z", "output": { "title": "https://arai-a.github.io/ecma262-compare/?title", "summary": "https://arai-a.github.io/ecma262-compare/?summary", "text": "https://arai-a.github.io/ecma262-compare/?text" }, "actions": [ { "label": "Label1", "description": "Desc1", "identifier": "id1" } ] }'
-        curl --request POST \
-        --url https://api.github.com/repos/${{ github.repository }}/check-runs/492582386 \
-        --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-        --header 'accept: application/vnd.github.antiope-preview+json' \
-        --header 'content-type: application/json' \
-        --data '{ "name": "ecma262-compare", "head_sha": "8dac63919644fa8217ab2423f1a7cb87c52182ff", "details_url": "https://arai-a.github.io/ecma262-compare/?details", "external_id": "1", "status": "completed", "started_at": "2020-03-03T00:00:00Z", "conclusion": "success", "completed_at": "2020-03-03T00:00:00Z", "output": { "title": "https://arai-a.github.io/ecma262-compare/?title2", "summary": "https://arai-a.github.io/ecma262-compare/?summary", "text": "https://arai-a.github.io/ecma262-compare/?text" }, "actions": [ { "label": "Label1", "description": "Desc1", "identifier": "id1" } ] }'
+        --data '{ "state": "success", "target_url": "https://arai-a.github.io/ecma262-compare/", "context": "ecma262-compare" }'
